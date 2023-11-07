@@ -137,8 +137,8 @@ LNPScrollView *lnpScrollView = nil;
 %hook UIView
 - (void)setFrame:(CGRect)arg1 {
 	if ([self isKindOfClass:NSClassFromString(@"CSAdjunctListView")]) {
-		CGRect stam = CGRectMake(arg1.origin.x, arg1.origin.y+maxNotifHeightPoint, arg1.size.width, arg1.size.height);
-		%orig(stam);
+		CGRect adjunctListViewFrame = CGRectMake(arg1.origin.x, arg1.origin.y+maxNotifHeightPoint, arg1.size.width, arg1.size.height);
+		%orig(adjunctListViewFrame);
 		return;
 	}
 	%orig(arg1);
