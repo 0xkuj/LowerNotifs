@@ -134,14 +134,12 @@ static void loadPrefs() {
 LNPScrollView *lnpScrollView = nil;
 
 %group tweakEnabledGroup
-%hook UIView
+/* there are no bad ideas, there's just not enough whiskey */
+%hook CSAdjunctListView
 - (void)setFrame:(CGRect)arg1 {
-	if ([self isKindOfClass:NSClassFromString(@"CSAdjunctListView")]) {
-		CGRect adjunctListViewFrame = CGRectMake(arg1.origin.x, arg1.origin.y+maxNotifHeightPoint, arg1.size.width, arg1.size.height);
-		%orig(adjunctListViewFrame);
-		return;
-	}
-	%orig(arg1);
+	CGRect adjunctListViewFrame = CGRectMake(arg1.origin.x, arg1.origin.y+maxNotifHeightPoint, arg1.size.width, arg1.size.height);
+	%orig(adjunctListViewFrame);
+	return;
 }
 %end
 
